@@ -11,14 +11,13 @@ class BidController extends Controller
     public function store(Request $request, Project $project)
     {
         $data = $request->validate([
-            'developer_id' => 'required|exists:users,id',
             'harga'        => 'required|integer|min:1',
             'durasi'       => 'required|integer|min:1',
             'proposal'     => 'required|string',
         ]);
 
-        Bid::updateOrCreate(
-            ['project_id' => $project->id, 'developer_id' => $data['developer_id']],
+                Bid::updateOrCreate(
+            ['project_id' => $project->id, 'developer_id' => auth()->id()],
             $data
         );
 

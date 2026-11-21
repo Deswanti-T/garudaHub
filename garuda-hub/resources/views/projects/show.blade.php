@@ -37,7 +37,6 @@
     <h3>Ajukan Penawaran</h3>
     <form method="POST" action="{{ route('bids.store', $project) }}">
         @csrf
-        <p>ID Developer: <input type="number" name="developer_id" value="2"></p>
         <p>Harga: <input type="number" name="harga"></p>
         <p>Durasi (hari): <input type="number" name="durasi"></p>
         <p>Proposal: <textarea name="proposal"></textarea></p>

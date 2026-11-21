@@ -15,7 +15,6 @@
 
     <form method="POST" action="{{ route('projects.store') }}">
         @csrf
-        <p>ID Klien: <input type="number" name="client_id" value="{{ old('client_id', 1) }}"></p>
         <p>Judul: <input type="text" name="judul" value="{{ old('judul') }}"></p>
         <p>Deskripsi: <textarea name="deskripsi">{{ old('deskripsi') }}</textarea></p>
         <p>Kategori: <input type="text" name="kategori" value="{{ old('kategori') }}"></p>

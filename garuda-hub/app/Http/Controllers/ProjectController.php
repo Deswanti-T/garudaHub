@@ -21,7 +21,6 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'client_id'    => 'required|exists:users,id',
             'judul'        => 'required|string|max:200',
             'deskripsi'    => 'required|string',
             'kategori'     => 'required|string|max:50',
@@ -30,6 +29,7 @@ class ProjectController extends Controller
             'batas_lelang' => 'required|date',
         ]);
 
+                $data['client_id'] = auth()->id();
         Project::create($data);
         return redirect()->route('projects.index');
     }
