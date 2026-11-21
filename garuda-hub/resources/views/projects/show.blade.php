@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ $project->judul }}</title>
+    <link rel="stylesheet" href="/app.css">
 </head>
 <body>
     <a href="{{ route('projects.index') }}">&larr; Kembali</a>
@@ -20,11 +21,11 @@
             {{ $bid->developer->nama }}: Rp {{ number_format($bid->harga) }}, {{ $bid->durasi }} hari
             @if ($bid->is_winner) <strong>(Pemenang)</strong> @endif
 
-            <form method="POST" action="{{ route('bids.winner', $bid) }}" style="display:inline">
+            <form method="POST" action="{{ route('bids.winner', $bid) }}" class="inline">
                 @csrf @method('PATCH')
                 <button type="submit">Pilih pemenang</button>
             </form>
-            <form method="POST" action="{{ route('bids.destroy', $bid) }}" style="display:inline">
+            <form method="POST" action="{{ route('bids.destroy', $bid) }}" class="inline">
                 @csrf @method('DELETE')
                 <button type="submit">Hapus</button>
             </form>

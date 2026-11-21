@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Proyek Baru</title>
+    <link rel="stylesheet" href="/app.css">
 </head>
 <body>
     <h1>Proyek Baru</h1>
 
     @if ($errors->any())
-        <ul style="color:red">
+        <ul class="error">
             @foreach ($errors->all() as $e) <li>{{ $e }}</li> @endforeach
         </ul>
     @endif

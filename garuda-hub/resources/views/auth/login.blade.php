@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - Garuda-Hub</title>
+    <link rel="stylesheet" href="/app.css">
 </head>
 <body>
     <!-- NIM: 252410102033 -->
     <h1>Login</h1>
 
     @if ($errors->any())
-        <ul style="color:red">
+        <ul class="error">
             @foreach ($errors->all() as $e) <li>{{ $e }}</li> @endforeach
         </ul>
     @endif

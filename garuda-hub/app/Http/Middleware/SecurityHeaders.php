@@ -19,7 +19,7 @@ class SecurityHeaders
         $response->headers->set('Referrer-Policy', 'no-referrer');
         $response->headers->set(
             'Content-Security-Policy',
-            "default-src 'self'; style-src 'self' 'unsafe-inline'; frame-ancestors 'none'; form-action 'self'"
+            "default-src 'self'; style-src 'self'; frame-ancestors 'none'; form-action 'self'"
         );
 
         return $response;
