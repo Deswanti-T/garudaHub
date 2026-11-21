@@ -6,6 +6,10 @@
 </head>
 <body>
     <h1>Daftar Proyek</h1>
+    <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
     <a href="{{ route('projects.create') }}">+ Proyek Baru</a>
 
     <table border="1" cellpadding="6">

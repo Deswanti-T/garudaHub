@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BidController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', fn () => redirect()->route('projects.index'));
 Route::resource('projects', ProjectController::class);
