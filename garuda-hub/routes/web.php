@@ -7,11 +7,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/', fn () => redirect()->route('projects.index'));
-Route::resource('projects', ProjectController::class);
+Route::middleware('auth')->group(function () {
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::post('projects/{project}/bids', [BidController::class, 'store'])->name('bids.store');
-Route::patch('bids/{bid}/winner', [BidController::class, 'pickWinner'])->name('bids.winner');
-Route::delete('bids/{bid}', [BidController::class, 'destroy'])->name('bids.destroy');
+    Route::get('/', fn () => redirect()->route('projects.index'));
+    Route::resource('projects', ProjectController::class);
+
+    Route::post('projects/{project}/bids', [BidController::class, 'store'])->name('bids.store');
+    Route::patch('bids/{bid}/winner', [BidController::class, 'pickWinner'])->name('bids.winner');
+    Route::delete('bids/{bid}', [BidController::class, 'destroy'])->name('bids.destroy');
+});
