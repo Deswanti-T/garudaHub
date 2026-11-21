@@ -13,16 +13,35 @@
     <p>Batas lelang: {{ $project->batas_lelang->format('d/m/Y') }}</p>
     <p>{{ $project->deskripsi }}</p>
 
-    <h2>Penawaran</h2>
+        <h2>Penawaran</h2>
     <ul>
         @forelse ($project->bids as $bid)
         <li>
             {{ $bid->developer->nama }}: Rp {{ number_format($bid->harga) }}, {{ $bid->durasi }} hari
             @if ($bid->is_winner) <strong>(Pemenang)</strong> @endif
+
+            <form method="POST" action="{{ route('bids.winner', $bid) }}" style="display:inline">
+                @csrf @method('PATCH')
+                <button type="submit">Pilih pemenang</button>
+            </form>
+            <form method="POST" action="{{ route('bids.destroy', $bid) }}" style="display:inline">
+                @csrf @method('DELETE')
+                <button type="submit">Hapus</button>
+            </form>
         </li>
         @empty
         <li>Belum ada penawaran.</li>
         @endforelse
     </ul>
+
+    <h3>Ajukan Penawaran</h3>
+    <form method="POST" action="{{ route('bids.store', $project) }}">
+        @csrf
+        <p>ID Developer: <input type="number" name="developer_id" value="2"></p>
+        <p>Harga: <input type="number" name="harga"></p>
+        <p>Durasi (hari): <input type="number" name="durasi"></p>
+        <p>Proposal: <textarea name="proposal"></textarea></p>
+        <button type="submit">Kirim</button>
+    </form>
 </body>
 </html>
